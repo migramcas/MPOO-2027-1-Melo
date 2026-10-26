@@ -1,7 +1,5 @@
 package mx.unam.domain;
 
-import java.time.LocalDate;
-
 public class Cancion extends ContenidoMultimedia {
 
     private GeneroMusical genero;
