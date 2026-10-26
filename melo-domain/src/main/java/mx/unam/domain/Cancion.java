@@ -1,4 +1,4 @@
-package mx.unam.fi.contenido; 
+package mx.unam.domain;
 
 public class Cancion extends ContenidoMultimedia {
     private GeneroMusical genero;
