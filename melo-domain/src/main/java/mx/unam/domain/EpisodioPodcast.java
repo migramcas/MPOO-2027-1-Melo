@@ -5,30 +5,55 @@ import java.time.LocalDateTime;
 
 public class EpisodioPodcast extends ContenidoMultimedia {
 
+  private int numeroEpisodio;
+  private String descripcion;
+
+  private EpisodioPodcast(Builder builder) {
+    super(builder);
+    this.numeroEpisodio = builder.numeroEpisodio;
+    this.descripcion = builder.descripcion;
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  public static class Builder extends ContenidoMultimedia.Builder<EpisodioPodcast, Builder> {
+
     private int numeroEpisodio;
     private String descripcion;
 
-    public EpisodioPodcast(Long id, String titulo, int duracionSegundos, LocalDate fechaPublicacion, 
-                           LocalDateTime fechaCreacion, LocalDateTime fechaUltimaActualizacion, 
-                           Long creadoPor, Long actualizadoPor, int numeroEpisodio, String descripcion) {
-        
-        super(id, titulo, duracionSegundos, fechaPublicacion, fechaCreacion, 
-              fechaUltimaActualizacion, creadoPor, actualizadoPor);
-        
-        this.numeroEpisodio = numeroEpisodio;
-        this.descripcion = descripcion;
+    public Builder numeroEpisodio(int numeroEpisodio) {
+      this.numeroEpisodio = numeroEpisodio;
+      return self();
     }
 
-    public int getNumeroEpisodio() {
-        return numeroEpisodio;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
+    public Builder descripcion(String descripcion) {
+      this.descripcion = descripcion;
+      return self();
     }
 
     @Override
-    public void reproducir() {
-        System.out.println("Reproduciendo episodio " + numeroEpisodio + ": " + getTitulo());
+    protected Builder self() {
+      return this;
     }
+
+    @Override
+    public EpisodioPodcast build() {
+      return new EpisodioPodcast(this);
+    }
+  }
+
+  public int getNumeroEpisodio() {
+    return numeroEpisodio;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
+  @Override
+  public void reproducir() {
+    System.out.println("Reproduciendo episodio " + numeroEpisodio + ": " + getTitulo());
+  }
 }

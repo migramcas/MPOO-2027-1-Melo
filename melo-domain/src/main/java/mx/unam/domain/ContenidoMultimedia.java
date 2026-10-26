@@ -5,45 +5,100 @@ import java.time.LocalDateTime;
 
 public abstract class ContenidoMultimedia {
 
-    private Long id;
-    private String titulo;
-    private int duracionSegundos;
-    private LocalDate fechaPublicacion;
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaUltimaActualizacion;
-    private Long creadoPor;
-    private Long actualizadoPor;
+  private Long id;
+  private String titulo;
+  private int duracionSegundos;
+  private LocalDate fechaPublicacion;
+  private LocalDateTime fechaCreacion;
+  private LocalDateTime fechaUltimaActualizacion;
+  private Long creadoPor;
+  private Long actualizadoPor;
 
-    public ContenidoMultimedia(Long id, String titulo, int duracionSegundos, LocalDate fechaPublicacion,
-                               LocalDateTime fechaCreacion, LocalDateTime fechaUltimaActualizacion,
-                               Long creadoPor, Long actualizadoPor) {
-        this.id = id;
-        this.titulo = titulo;
-        this.duracionSegundos = duracionSegundos;
-        this.fechaPublicacion = fechaPublicacion;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaUltimaActualizacion = fechaUltimaActualizacion;
-        this.creadoPor = creadoPor;
-        this.actualizadoPor = actualizadoPor;
+  protected ContenidoMultimedia(Builder<?, ?> builder) {
+    this.id = builder.id;
+    this.titulo = builder.titulo;
+    this.duracionSegundos = builder.duracionSegundos;
+    this.fechaPublicacion = builder.fechaPublicacion;
+    this.fechaCreacion = builder.fechaCreacion;
+    this.fechaUltimaActualizacion = builder.fechaUltimaActualizacion;
+    this.creadoPor = builder.creadoPor;
+    this.actualizadoPor = builder.actualizadoPor;
+  }
+
+  public abstract static class Builder<T extends ContenidoMultimedia,
+      B extends Builder<T, B>> {
+
+    protected Long id;
+    protected String titulo;
+    protected int duracionSegundos;
+    protected LocalDate fechaPublicacion;
+    protected LocalDateTime fechaCreacion;
+    protected LocalDateTime fechaUltimaActualizacion;
+    protected Long creadoPor;
+    protected Long actualizadoPor;
+
+    protected abstract B self();
+
+    public abstract T build();
+
+    public B id(Long id) {
+      this.id = id;
+      return self();
     }
 
-    public Long getId() {
-        return id;
+    public B titulo(String titulo) {
+      this.titulo = titulo;
+      return self();
     }
 
-    public String getTitulo() {
-        return titulo;
+    public B duracionSegundos(int duracionSegundos) {
+      this.duracionSegundos = duracionSegundos;
+      return self();
     }
 
-    public int getDuracionSegundos() {
-        return duracionSegundos;
+    public B fechaPublicacion(LocalDate fechaPublicacion) {
+      this.fechaPublicacion = fechaPublicacion;
+      return self();
     }
 
-    public LocalDate getFechaPublicacion() {
-        return fechaPublicacion;
+    public B fechaCreacion(LocalDateTime fechaCreacion) {
+      this.fechaCreacion = fechaCreacion;
+      return self();
     }
 
-    public abstract void reproducir();
+    public B fechaUltimaActualizacion(LocalDateTime fechaUltimaActualizacion) {
+      this.fechaUltimaActualizacion = fechaUltimaActualizacion;
+      return self();
+    }
 
-    public abstract String getDescripcion();
+    public B creadoPor(Long creadoPor) {
+      this.creadoPor = creadoPor;
+      return self();
+    }
+
+    public B actualizadoPor(Long actualizadoPor) {
+      this.actualizadoPor = actualizadoPor;
+      return self();
+    }
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public String getTitulo() {
+    return titulo;
+  }
+
+  public int getDuracionSegundos() {
+    return duracionSegundos;
+  }
+
+  public LocalDate getFechaPublicacion() {
+    return fechaPublicacion;
+  }
+
+  public abstract void reproducir();
+
+  public abstract String getDescripcion();
 }
