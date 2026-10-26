@@ -1,4 +1,4 @@
-package mx.unam.fi;
+package mx.unam.fi.melo.application;
 
 /**
  * Hello world!
