@@ -45,12 +45,10 @@ public class Audiolibro extends ContenidoMultimedia {
     return autor;
   }
 
-  @Override
   public void reproducir() {
     System.out.println("Reproduciendo audiolibro: " + getTitulo());
   }
 
-  @Override
   public String getDescripcion() {
     return "Audiolibro - Autor: " + autor + ", Narrador: " + narrador;
   }
