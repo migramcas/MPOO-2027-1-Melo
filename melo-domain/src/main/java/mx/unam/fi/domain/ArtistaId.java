@@ -1,4 +1,4 @@
-package mx.unam.domain;
+package mx.unam.fi.domain;
 
 public class ArtistaId {
 
@@ -10,7 +10,7 @@ public class ArtistaId {
     }
 
     private static void validate(Long id) {
-        if(id == null || id < 0) {
+        if (id == null || id < 0) {
             throw new IllegalArgumentException("El id debe ser mayor a 0 y no puede ser nulo");
         }
     }

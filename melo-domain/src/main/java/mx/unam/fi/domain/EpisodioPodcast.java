@@ -1,4 +1,4 @@
-package mx.unam.domain;
+package mx.unam.fi.domain;
 
 public class EpisodioPodcast extends ContenidoMultimedia {
 

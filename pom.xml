@@ -22,14 +22,26 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
-        <junit.version>4.13.2</junit.version>
         <spring-boot.version>4.0.0</spring-boot.version>
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        
+        <!-- Versiones de dependencias -->
+        <melo-domain.version>1.0.0</melo-domain.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Dependencias del proyecto -->
+            <dependency>
+                <groupId>mx.unam.fi</groupId>
+                <artifactId>melo-domain</artifactId>
+                <version>${melo-domain.version}</version>
+            </dependency>
+
+
+            <!-- Dependencias externas -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>

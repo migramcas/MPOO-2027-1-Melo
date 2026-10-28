@@ -19,9 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>mx.unam.fi</groupId>
+            <artifactId>melo-domain</artifactId>
         </dependency>
     </dependencies>
 </project>
+

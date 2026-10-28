@@ -1,4 +1,4 @@
-package mx.unam.domain;
+package mx.unam.fi.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;

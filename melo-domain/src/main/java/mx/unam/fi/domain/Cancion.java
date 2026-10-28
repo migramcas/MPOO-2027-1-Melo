@@ -1,4 +1,4 @@
-package mx.unam.domain;
+package mx.unam.fi.domain;
 
 public class Cancion extends ContenidoMultimedia {
 
@@ -48,7 +48,7 @@ public class Cancion extends ContenidoMultimedia {
     public void setGenero(GeneroMusical genero) {
         this.genero = genero;
     }
-    
+
     public int getNumeroPista() {
         return numeroPista;
     }
