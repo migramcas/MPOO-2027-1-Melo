@@ -6,7 +6,7 @@ import java.util.Optional;
 import mx.unam.fi.domain.model.Artista;
 import mx.unam.fi.domain.model.ArtistaId;
 
-public interface ArtistaCrudService {
+public interface ArtistaCrudService { // CRUD
 
     List<Artista> getAll();
 

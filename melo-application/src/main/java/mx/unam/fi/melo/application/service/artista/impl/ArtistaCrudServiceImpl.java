@@ -11,10 +11,18 @@ public class ArtistaCrudServiceImpl implements ArtistaCrudService {
 
     @Override
     public List<Artista> getAll() {
-        return List.of(Artista.builder().id(ArtistaId.of(1L)).nombreArtistico("Artista 1")
-                .biografia("Biografía del Artista 1").build(), Artista.builder().id(ArtistaId.of(2L
-
-        )).nombreArtistico("Artista 2").biografia("Biografía del Artista 2").build());
+        return List.of(
+            Artista.builder()
+            .id(ArtistaId.of(1L))
+            .nombreArtistico("Artista 1")
+            .biografia("Biografía del Artista 1")
+            .build(), 
+            
+            Artista.builder()
+            .id(ArtistaId.of(2L))
+            .nombreArtistico("Artista 2")
+            .biografia("Biografía del Artista 2")
+            .build());
 
     }
 
