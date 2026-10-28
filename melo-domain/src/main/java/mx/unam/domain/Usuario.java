@@ -8,35 +8,21 @@ public class Usuario {
     private final String nombreUsuario;
     private final DatosPersonales datosPersonales;
     private final Rol rol;
-
     private final LocalDateTime fechaCreacion;
     private final LocalDateTime fechaUltimaActualizacion;
     private final Long creadoPor;
     private final Long actualizadoPor;
 
-    public Usuario(Long id, String nombreUsuario, DatosPersonales datosPersonales, Rol rol,
-                   Long creadoPor) {
-        this(id, nombreUsuario, datosPersonales, rol, LocalDateTime.now(), null, creadoPor, null);
-    }
-
     private Usuario(Builder builder) {
-        this(builder.id, builder.nombreUsuario, builder.datosPersonales, builder.rol,
-                builder.fechaCreacion, builder.fechaUltimaActualizacion, builder.creadoPor,
-                builder.actualizadoPor);
-    }
-
-    private Usuario(Long id, String nombreUsuario, DatosPersonales datosPersonales, Rol rol,
-                    LocalDateTime fechaCreacion, LocalDateTime fechaUltimaActualizacion,
-                    Long creadoPor, Long actualizadoPor) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.datosPersonales = datosPersonales;
-        this.rol = rol;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaUltimaActualizacion = fechaUltimaActualizacion != null
-                ? fechaUltimaActualizacion : fechaCreacion;
-        this.creadoPor = creadoPor;
-        this.actualizadoPor = actualizadoPor;
+        this.id = builder.id;
+        this.nombreUsuario = builder.nombreUsuario;
+        this.datosPersonales = builder.datosPersonales;
+        this.rol = builder.rol;
+        this.fechaCreacion = builder.fechaCreacion;
+        this.fechaUltimaActualizacion = builder.fechaUltimaActualizacion != null ? builder.fechaUltimaActualizacion
+                : builder.fechaCreacion;
+        this.creadoPor = builder.creadoPor;
+        this.actualizadoPor = builder.actualizadoPor;
     }
 
     public static Builder builder() {
@@ -94,10 +80,7 @@ public class Usuario {
         }
 
         public Usuario build() {
-            LocalDateTime fechaCreacion = this.fechaCreacion != null
-                    ? this.fechaCreacion : LocalDateTime.now();
-            return new Usuario(id, nombreUsuario, datosPersonales, rol, fechaCreacion,
-                    fechaUltimaActualizacion, creadoPor, actualizadoPor);
+            return new Usuario(this);
         }
     }
 

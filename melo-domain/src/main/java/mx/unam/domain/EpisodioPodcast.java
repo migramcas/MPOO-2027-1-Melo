@@ -1,12 +1,9 @@
 package mx.unam.domain;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 public class EpisodioPodcast extends ContenidoMultimedia {
 
-  private int numeroEpisodio;
-  private String descripcion;
+  private final int numeroEpisodio;
+  private final String descripcion;
 
   private EpisodioPodcast(Builder builder) {
     super(builder);
@@ -52,8 +49,8 @@ public class EpisodioPodcast extends ContenidoMultimedia {
     return descripcion;
   }
 
-  @Override
   public void reproducir() {
     System.out.println("Reproduciendo episodio " + numeroEpisodio + ": " + getTitulo());
   }
+
 }

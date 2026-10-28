@@ -25,8 +25,7 @@ public abstract class ContenidoMultimedia {
     this.actualizadoPor = builder.actualizadoPor;
   }
 
-  public abstract static class Builder<T extends ContenidoMultimedia,
-      B extends Builder<T, B>> {
+  public abstract static class Builder<T extends ContenidoMultimedia, B extends Builder<T, B>> {
 
     protected Long id;
     protected String titulo;
@@ -98,7 +97,20 @@ public abstract class ContenidoMultimedia {
     return fechaPublicacion;
   }
 
-  public abstract void reproducir();
+  public LocalDateTime getFechaCreacion() {
+    return fechaCreacion;
+  }
 
-  public abstract String getDescripcion();
+  public LocalDateTime getFechaUltimaActualizacion() {
+    return fechaUltimaActualizacion;
+  }
+
+  public Long getCreadoPor() {
+    return creadoPor;
+  }
+
+  public Long getActualizadoPor() {
+    return actualizadoPor;
+  }
+
 }
