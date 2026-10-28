@@ -1,4 +1,4 @@
-package mx.unam.fi.domain;
+package mx.unam.fi.domain.model;
 
 import java.util.Set;
 
