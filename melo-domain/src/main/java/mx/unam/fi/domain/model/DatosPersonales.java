@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class DatosPersonales {
 
-    private final String nombre;
-    private final String apellidoPaterno;
-    private final String apellidoMaterno;
-    private final LocalDate fechaNacimiento;
-    private final String email;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private LocalDate fechaNacimiento;
+    private String email;
 
     private DatosPersonales(Builder builder) {
         this.nombre = builder.nombre;

@@ -4,10 +4,7 @@ import java.util.List;
 
 import mx.unam.fi.melo.api.dto.inbound.AltaUsuarioDto;
 import mx.unam.fi.melo.application.service.usuario.dto.NuevoUsuarioDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import mx.unam.fi.domain.model.Usuario;
 import mx.unam.fi.melo.application.service.usuario.UsuarioCrudService;
@@ -28,7 +25,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario crearUsuario(AltaUsuarioDto usuarioInput) {
+    public Usuario crearUsuario(@RequestBody AltaUsuarioDto usuarioInput) {
 
         NuevoUsuarioDto nuevoUsuario = NuevoUsuarioDto.builder()
                 .nombreUsuario(usuarioInput.getNombreUsuario())

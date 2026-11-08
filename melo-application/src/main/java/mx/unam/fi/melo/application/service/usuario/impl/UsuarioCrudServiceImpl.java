@@ -39,14 +39,13 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
     @Override
     public Usuario crear(NuevoUsuarioDto usuario) {
-        usuarioRepository
-                .getByEmail(usuario.getEmail())
-                .ifPresent(u -> {
-                    throw new IllegalStateException("Usuario con email " + usuario.getEmail() + " ya existe");
-                });
+        Optional<Usuario> usuarioGuardado = usuarioRepository.getByEmail(usuario.getEmail());
+        if(usuarioGuardado.isPresent()) {
+            throw new IllegalStateException("El usuario ya existe");
+        }
 
-        DatosPersonales datosPersonales = DatosPersonales.builder().
-                nombre(usuario.getNombre())
+        DatosPersonales datosPersonales = DatosPersonales.builder()
+                .nombre(usuario.getNombre())
                 .apellidoPaterno(usuario.getApellidoPaterno())
                 .apellidoMaterno(usuario.getApellidoMaterno())
                 .fechaNacimiento(usuario.getFechaNacimiento())
