@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class NuevoUsuarioDto {
 
-    private String nombreUsuario;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private LocalDate fechaNacimiento;
-    private String email;
+    private final String nombreUsuario;
+    private final String nombre;
+    private final String apellidoPaterno;
+    private final String apellidoMaterno;
+    private final LocalDate fechaNacimiento;
+    private final String email;
 
     private NuevoUsuarioDto(Builder builder) {
         this.nombreUsuario = builder.nombreUsuario;
