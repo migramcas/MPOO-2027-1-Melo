@@ -30,6 +30,7 @@
         <melo-domain.version>1.0.0</melo-domain.version>
         <melo-application.version>1.0.0</melo-application.version>
         <junit.version>4.13.2</junit.version>
+        <melo-infra.version>1.0.0</melo-infra.version>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,11 @@
                 <groupId>mx.unam.fi</groupId>
                 <artifactId>melo-application</artifactId>
                 <version>${melo-application.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mx.unam.fi</groupId>
+                <artifactId>melo-infra</artifactId>
+                <version>${melo-infra.version}</version>
             </dependency>
 
 

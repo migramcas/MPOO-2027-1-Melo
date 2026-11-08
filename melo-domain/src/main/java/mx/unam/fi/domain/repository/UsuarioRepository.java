@@ -7,6 +7,8 @@ import mx.unam.fi.domain.model.Usuario;
 
 public interface UsuarioRepository {
 
+    Long nextId();
+
     List<Usuario> getAll();
 
     Optional<Usuario> getById(Long id);

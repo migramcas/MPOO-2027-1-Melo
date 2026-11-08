@@ -57,12 +57,10 @@ public class Cancion extends ContenidoMultimedia {
         this.numeroPista = numeroPista;
     }
 
-    @Override
     public void reproducir() {
         System.out.println("Reproduciendo canción...");
     }
 
-    @Override
     public String getDescripcion() {
         return "Canción - Pista: " + numeroPista + ", Género: " + genero;
     }

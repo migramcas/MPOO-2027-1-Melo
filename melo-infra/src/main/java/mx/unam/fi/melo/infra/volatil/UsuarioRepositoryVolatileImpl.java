@@ -9,39 +9,57 @@ import mx.unam.fi.domain.repository.UsuarioRepository;
 
 public class UsuarioRepositoryVolatileImpl implements UsuarioRepository {
 
+    public static final List<Usuario> listaUsuarios;
+
+    static {
+        listaUsuarios = new ArrayList<>();
+    }
+
     @Override
     public List<Usuario> getAll() {
-        return new ArrayList<>();
+        return listaUsuarios;
     }
 
     @Override
     public Optional<Usuario> getById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        return listaUsuarios.stream()
+                .filter(usuario -> usuario.getId().equals(id))
+                .findFirst();
     }
 
     @Override
     public Optional<Usuario> getByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getByEmail'");
+        return listaUsuarios.stream()
+                .filter(usuario -> usuario.getDatosPersonales().getEmail().equalsIgnoreCase(email))
+                .findFirst();
     }
 
     @Override
     public Usuario add(Usuario usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        listaUsuarios.add(usuario);
+        return usuario;
     }
 
     @Override
     public Usuario update(Long id, Usuario usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Optional<Usuario> usuarioExistente = getById(id);
+        if (usuarioExistente.isPresent()) {
+            listaUsuarios.remove(usuarioExistente.get());
+            listaUsuarios.add(usuario);
+            return usuario;
+        } else {
+            throw new IllegalStateException("Usuario con id " + id + " no encontrado");
+        }
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Optional<Usuario> usuarioExistente = getById(id);
+        if (usuarioExistente.isPresent()) {
+            listaUsuarios.remove(usuarioExistente.get());
+        } else {
+            throw new IllegalStateException("Usuario con id " + id + " no encontrado");
+        }
     }
 
 }

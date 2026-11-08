@@ -1,8 +1,11 @@
 package mx.unam.fi.melo.application.service.usuario.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import mx.unam.fi.domain.model.DatosPersonales;
+import mx.unam.fi.domain.model.Rol;
 import mx.unam.fi.domain.model.Usuario;
 import mx.unam.fi.domain.repository.UsuarioRepository;
 import mx.unam.fi.melo.application.service.usuario.UsuarioCrudService;
@@ -36,8 +39,34 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
     @Override
     public Usuario crear(NuevoUsuarioDto usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crear'");
+        usuarioRepository
+                .getByEmail(usuario.getEmail())
+                .ifPresent(u -> {
+                    throw new IllegalStateException("Usuario con email " + usuario.getEmail() + " ya existe");
+                });
+
+        DatosPersonales datosPersonales = DatosPersonales.builder().
+                nombre(usuario.getNombre())
+                .apellidoPaterno(usuario.getApellidoPaterno())
+                .apellidoMaterno(usuario.getApellidoMaterno())
+                .fechaNacimiento(usuario.getFechaNacimiento())
+                .email(usuario.getEmail())
+                .build();
+
+        LocalDateTime fechaActual = LocalDateTime.now();
+
+        Long usuarioId = usuarioRepository.nextId();
+
+        return usuarioRepository.add(Usuario.builder()
+                .id(usuarioId)
+                .nombreUsuario(usuario.getNombreUsuario())
+                .datosPersonales(datosPersonales)
+                .rol(Rol.USUARIO)
+                .fechaCreacion(fechaActual)
+                .fechaUltimaActualizacion(fechaActual)
+                .creadoPor(usuarioId)
+                .actualizadoPor(usuarioId)
+                .build());
     }
 
     @Override
