@@ -8,6 +8,11 @@ import java.util.Optional;
 
 public class UsuarioRepositoryMongoImpl implements UsuarioRepository {
     @Override
+    public Long nextId() {
+        return 0L;
+    }
+
+    @Override
     public List<Usuario> getAll() {
         return List.of();
     }
