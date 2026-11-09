@@ -2,6 +2,7 @@ package mx.unam.fi.melo.application.service.usuario.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import mx.unam.fi.domain.model.DatosPersonales;
@@ -27,18 +28,20 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
     @Override
     public Optional<Usuario> obtenerUsuarioPorId(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerUsuarioPorId'");
+        Objects.requireNonNull(id, "El id no puede ser null");
+        return usuarioRepository.getById(id);
     }
 
     @Override
     public Optional<Usuario> obtenerUsuarioPorEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerUsuarioPorEmail'");
+       Objects.requireNonNull(email, "El email no puede ser null");
+        return usuarioRepository.getByEmail(email);
     }
 
     @Override
     public Usuario crear(NuevoUsuarioDto usuario) {
+       Objects.requireNonNull(usuario, "El usuario no puede ser null");
+
         Optional<Usuario> usuarioGuardado = usuarioRepository.getByEmail(usuario.getEmail());
         if(usuarioGuardado.isPresent()) {
             throw new IllegalStateException("El usuario ya existe");
@@ -70,14 +73,40 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
     @Override
     public Usuario actualizar(Long id, ActualizarUsuarioDto usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
+        Objects.requireNonNull(id, "El id no puede ser null");
+        Objects.requireNonNull(usuario, "El usuario no puede ser null");
+
+        Usuario usuarioExistente = usuarioRepository.getById(id)
+                .orElseThrow(() -> new IllegalStateException("Usuario con id " + id + " no encontrado"));
+
+        DatosPersonales datosPersonalesActuales = usuarioExistente.getDatosPersonales();
+
+        DatosPersonales datosPersonalesActualizados = DatosPersonales.builder()
+                .nombre(usuario.getNombre())
+                .apellidoPaterno(usuario.getApellidoPaterno())
+                .apellidoMaterno(usuario.getApellidoMaterno())
+                .fechaNacimiento(usuario.getFechaNacimiento())
+                .email(datosPersonalesActuales.getEmail())
+                .build();
+
+        Usuario usuarioActualizado = Usuario.builder()
+                .id(usuarioExistente.getId())
+                .nombreUsuario(usuarioExistente.getNombreUsuario())
+                .datosPersonales(datosPersonalesActualizados)
+                .rol(usuarioExistente.getRol())
+                .fechaCreacion(usuarioExistente.getFechaCreacion())
+                .fechaUltimaActualizacion(LocalDateTime.now())
+                .creadoPor(usuarioExistente.getCreadoPor())
+                .actualizadoPor(id)
+                .build();
+
+        return usuarioRepository.update(id, usuarioActualizado);
     }
 
     @Override
     public void eliminar(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        Objects.requireNonNull(id, "El id no puede ser null");
+        usuarioRepository.delete(id);
     }
 
 }
