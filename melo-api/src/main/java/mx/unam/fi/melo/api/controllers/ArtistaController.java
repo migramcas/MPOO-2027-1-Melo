@@ -21,7 +21,7 @@ public class ArtistaController {
 
     @GetMapping()
     public List<Artista> getAllArtistas() {
-        return artistaCrudService.getAll();
+        return artistaCrudService.obtenerTodos();
     }
 
 }

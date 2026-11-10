@@ -1,21 +1,10 @@
 package mx.unam.fi.melo.application.service.artista;
 
-import java.util.List;
-import java.util.Optional;
-
 import mx.unam.fi.domain.model.Artista;
 import mx.unam.fi.domain.model.ArtistaId;
+import mx.unam.fi.melo.application.service.CrudService;
+import mx.unam.fi.melo.application.service.artista.dto.ActualizarArtistaDto;
+import mx.unam.fi.melo.application.service.artista.dto.NuevoArtistaDto;
 
-public interface ArtistaCrudService { // CRUD
-
-    List<Artista> getAll();
-
-    Optional<Artista> getById(ArtistaId id);
-
-    Artista add(Artista artista);
-
-    Artista update(Artista artista);
-
-    void delete(ArtistaId id);
-
+public interface ArtistaCrudService extends CrudService<Artista, ArtistaId, NuevoArtistaDto, ActualizarArtistaDto> {
 }

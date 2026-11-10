@@ -6,11 +6,13 @@ import java.util.Optional;
 import mx.unam.fi.domain.model.Artista;
 import mx.unam.fi.domain.model.ArtistaId;
 import mx.unam.fi.melo.application.service.artista.ArtistaCrudService;
+import mx.unam.fi.melo.application.service.artista.dto.ActualizarArtistaDto;
+import mx.unam.fi.melo.application.service.artista.dto.NuevoArtistaDto;
 
 public class ArtistaCrudServiceImpl implements ArtistaCrudService {
 
     @Override
-    public List<Artista> getAll() {
+    public List<Artista> obtenerTodos() {
         return List.of(
             Artista.builder()
             .id(ArtistaId.of(1L))
@@ -27,29 +29,23 @@ public class ArtistaCrudServiceImpl implements ArtistaCrudService {
     }
 
     @Override
-    public Optional<Artista> getById(ArtistaId id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+    public Optional<Artista> obtenerPorId(ArtistaId id) {
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerPorId'");
     }
 
     @Override
-    public Artista add(Artista artista) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    public Artista crear(NuevoArtistaDto dto) {
+        throw new UnsupportedOperationException("Unimplemented method 'crear'");
     }
 
     @Override
-    public Artista update(Artista artista) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Artista actualizar(ArtistaId id, ActualizarArtistaDto dto) {
+        throw new UnsupportedOperationException("Unimplemented method 'actualizar'");
     }
 
     @Override
-    public void delete(ArtistaId id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public void eliminar(ArtistaId id) {
+        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
     }
-
-    // Implementación de los métodos de la interfaz ArtistaCrudService
 
 }
