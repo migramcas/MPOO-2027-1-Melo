@@ -63,11 +63,11 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
                 .id(usuarioId)
                 .nombreUsuario(usuario.getNombreUsuario())
                 .datosPersonales(datosPersonales)
-                .rol(Rol.USUARIO)
+                .rol(usuario.getRol())
                 .fechaCreacion(fechaActual)
                 .fechaUltimaActualizacion(fechaActual)
-                .creadoPor(usuarioId)
-                .actualizadoPor(usuarioId)
+                .creadoPor(usuario.getCreadoPor())
+                .actualizadoPor(usuario.getCreadoPor())
                 .build());
     }
 
