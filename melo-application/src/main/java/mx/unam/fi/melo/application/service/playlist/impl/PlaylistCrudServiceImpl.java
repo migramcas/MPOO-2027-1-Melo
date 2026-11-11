@@ -9,7 +9,7 @@ import mx.unam.fi.domain.model.Playlist;
 import mx.unam.fi.domain.repository.PlaylistRepository;
 import mx.unam.fi.melo.application.service.playlist.PlaylistCrudService;
 import mx.unam.fi.melo.application.service.playlist.dto.ActualizarPlaylistDto;
-import mx.unam.fi.melo.application.service.playlist.dto.NuevaPlaylistDto;
+import mx.unam.fi.melo.application.service.playlist.dto.InfoCrearPlaylistDto;
 
 public class PlaylistCrudServiceImpl implements PlaylistCrudService {
 
@@ -31,7 +31,7 @@ public class PlaylistCrudServiceImpl implements PlaylistCrudService {
     }
 
     @Override
-    public Playlist crear(NuevaPlaylistDto dto) {
+    public Playlist crear(InfoCrearPlaylistDto dto) {
         Objects.requireNonNull(dto, "El DTO no puede ser null");
 
         Long playlistId = playlistRepository.nextId();

@@ -11,7 +11,7 @@ import mx.unam.fi.domain.model.Usuario;
 import mx.unam.fi.domain.repository.UsuarioRepository;
 import mx.unam.fi.melo.application.service.usuario.UsuarioCrudService;
 import mx.unam.fi.melo.application.service.usuario.dto.ActualizarUsuarioDto;
-import mx.unam.fi.melo.application.service.usuario.dto.NuevoUsuarioDto;
+import mx.unam.fi.melo.application.service.usuario.dto.InfoCrearUsuarioDto;
 
 public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
@@ -39,7 +39,7 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
     }
 
     @Override
-    public Usuario crear(NuevoUsuarioDto usuario) {
+    public Usuario crear(InfoCrearUsuarioDto usuario) {
        Objects.requireNonNull(usuario, "El usuario no puede ser null");
 
         Optional<Usuario> usuarioGuardado = usuarioRepository.getByEmail(usuario.getEmail());
@@ -107,6 +107,25 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
     public void eliminar(Long id) {
         Objects.requireNonNull(id, "El id no puede ser null");
         usuarioRepository.delete(id);
+    }
+
+    @Override
+    public void eliminar(Long id, Rol rol) {
+        Objects.requireNonNull(id, "El id no puede ser null");
+        Usuario usuario = verificarExitenciaUsuario(id);
+        verificarRolUsuario(rol, usuario);
+        usuarioRepository.delete(id);
+    }
+
+    private void verificarRolUsuario(Rol rolEsperado, Usuario usuario) {
+        if(usuario.getRol().equals(rolEsperado)) {
+            throw new IllegalStateException("No se puede eliminar el usuario con rol " + usuario.getRol());
+        }
+    }
+
+    private Usuario verificarExitenciaUsuario(Long id) {
+        return obtenerUsuarioPorId(id)
+                .orElseThrow(() -> new IllegalStateException("Usuario con id " + id + " no encontrado"));
     }
 
 }

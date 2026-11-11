@@ -1,23 +1,29 @@
 package mx.unam.fi.melo.application.service.usuario.dto;
 
+import mx.unam.fi.domain.model.Rol;
+
 import java.time.LocalDate;
 
-public class NuevoUsuarioDto {
+public class InfoCrearUsuarioDto {
 
+    private final Rol rol;
     private final String nombreUsuario;
     private final String nombre;
     private final String apellidoPaterno;
     private final String apellidoMaterno;
     private final LocalDate fechaNacimiento;
     private final String email;
+    private final Long creadoPor;
 
-    private NuevoUsuarioDto(Builder builder) {
+    private InfoCrearUsuarioDto(Builder builder) {
+        this.rol = builder.rol != null ? builder.rol : Rol.USUARIO;
         this.nombreUsuario = builder.nombreUsuario;
         this.nombre = builder.nombre;
         this.apellidoPaterno = builder.apellidoPaterno;
         this.apellidoMaterno = builder.apellidoMaterno;
         this.fechaNacimiento = builder.fechaNacimiento;
         this.email = builder.email;
+        this.creadoPor = builder.creadoPor;
     }
 
     public static Builder builder() {
@@ -26,12 +32,19 @@ public class NuevoUsuarioDto {
 
     public static class Builder {
 
+        private Rol rol;
         private String nombreUsuario;
         private String nombre;
         private String apellidoPaterno;
         private String apellidoMaterno;
         private LocalDate fechaNacimiento;
         private String email;
+        private Long creadoPor;
+
+        public Builder rol(Rol rol) {
+            this.rol = rol;
+            return this;
+        }
 
         public Builder nombreUsuario(String nombreUsuario) {
             this.nombreUsuario = nombreUsuario;
@@ -63,9 +76,17 @@ public class NuevoUsuarioDto {
             return this;
         }
 
-        public NuevoUsuarioDto build() {
-            return new NuevoUsuarioDto(this);
+        public Builder creadoPor(Long creadoPor) {
+            this.creadoPor = creadoPor;
         }
+
+        public InfoCrearUsuarioDto build() {
+            return new InfoCrearUsuarioDto(this);
+        }
+    }
+
+    public Rol getRol() {
+        return rol;
     }
 
     public String getNombreUsuario() {
@@ -90,6 +111,10 @@ public class NuevoUsuarioDto {
 
     public String getEmail() {
         return email;
+    }
+
+    public Long getCreadoPor() {
+        return creadoPor;
     }
 
 }

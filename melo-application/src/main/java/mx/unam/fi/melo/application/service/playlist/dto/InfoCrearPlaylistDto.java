@@ -3,12 +3,12 @@ package mx.unam.fi.melo.application.service.playlist.dto;
 import java.util.List;
 import mx.unam.fi.domain.model.ContenidoMultimedia;
 
-public class NuevaPlaylistDto {
+public class InfoCrearPlaylistDto {
     private String nombre;
     private List<ContenidoMultimedia> contenido;
     private Long creadoPor;
 
-    private NuevaPlaylistDto(Builder builder) {
+    private InfoCrearPlaylistDto(Builder builder) {
         this.nombre = builder.nombre;
         this.contenido = builder.contenido;
         this.creadoPor = builder.creadoPor;
@@ -42,8 +42,8 @@ public class NuevaPlaylistDto {
             return this;
         }
 
-        public NuevaPlaylistDto build() {
-            return new NuevaPlaylistDto(this);
+        public InfoCrearPlaylistDto build() {
+            return new InfoCrearPlaylistDto(this);
         }
     }
 }

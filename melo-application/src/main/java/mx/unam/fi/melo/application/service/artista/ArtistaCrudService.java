@@ -4,7 +4,7 @@ import mx.unam.fi.domain.model.Artista;
 import mx.unam.fi.domain.model.ArtistaId;
 import mx.unam.fi.melo.application.service.CrudService;
 import mx.unam.fi.melo.application.service.artista.dto.ActualizarArtistaDto;
-import mx.unam.fi.melo.application.service.artista.dto.NuevoArtistaDto;
+import mx.unam.fi.melo.application.service.artista.dto.CrearArtistaDto;
 
-public interface ArtistaCrudService extends CrudService<Artista, ArtistaId, NuevoArtistaDto, ActualizarArtistaDto> {
+public interface ArtistaCrudService extends CrudService<Artista, ArtistaId, CrearArtistaDto, ActualizarArtistaDto> {
 }

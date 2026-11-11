@@ -9,7 +9,7 @@ import mx.unam.fi.domain.model.Cancion;
 import mx.unam.fi.domain.repository.CancionRepository;
 import mx.unam.fi.melo.application.service.cancion.CancionCrudService;
 import mx.unam.fi.melo.application.service.cancion.dto.ActualizarCancionDto;
-import mx.unam.fi.melo.application.service.cancion.dto.NuevaCancionDto;
+import mx.unam.fi.melo.application.service.cancion.dto.CrearCancionDto;
 
 public class CancionCrudServiceImpl implements CancionCrudService {
 
@@ -31,7 +31,7 @@ public class CancionCrudServiceImpl implements CancionCrudService {
     }
 
     @Override
-    public Cancion crear(NuevaCancionDto dto) {
+    public Cancion crear(CrearCancionDto dto) {
         Objects.requireNonNull(dto, "El DTO no puede ser null");
 
         Long cancionId = cancionRepository.nextId();

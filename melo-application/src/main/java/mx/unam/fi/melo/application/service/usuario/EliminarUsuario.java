@@ -1,8 +1,11 @@
 package mx.unam.fi.melo.application.service.usuario;
 
-@FunctionalInterface
+import mx.unam.fi.domain.model.Rol;
+
 public interface EliminarUsuario {
 
     void eliminar(Long id);
+
+    void eliminar(Long id, Rol rolVerificacion);
 
 }

@@ -4,14 +4,14 @@ import java.util.Set;
 import mx.unam.fi.domain.model.DatosPersonales;
 import mx.unam.fi.domain.model.GeneroMusical;
 
-public class NuevoArtistaDto {
+public class CrearArtistaDto {
 
     private String nombreArtistico;
     private String biografia;
     private DatosPersonales datosPersonales;
     private Set<GeneroMusical> generos;
 
-    private NuevoArtistaDto(Builder builder) {
+    private CrearArtistaDto(Builder builder) {
         this.nombreArtistico = builder.nombreArtistico;
         this.biografia = builder.biografia;
         this.datosPersonales = builder.datosPersonales;
@@ -53,8 +53,8 @@ public class NuevoArtistaDto {
             return this;
         }
 
-        public NuevoArtistaDto build() {
-            return new NuevoArtistaDto(this);
+        public CrearArtistaDto build() {
+            return new CrearArtistaDto(this);
         }
     }
 }

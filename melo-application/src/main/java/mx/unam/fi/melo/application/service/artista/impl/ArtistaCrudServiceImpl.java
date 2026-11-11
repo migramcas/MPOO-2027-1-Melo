@@ -9,7 +9,7 @@ import mx.unam.fi.domain.model.ArtistaId;
 import mx.unam.fi.domain.repository.ArtistaRepository;
 import mx.unam.fi.melo.application.service.artista.ArtistaCrudService;
 import mx.unam.fi.melo.application.service.artista.dto.ActualizarArtistaDto;
-import mx.unam.fi.melo.application.service.artista.dto.NuevoArtistaDto;
+import mx.unam.fi.melo.application.service.artista.dto.CrearArtistaDto;
 
 public class ArtistaCrudServiceImpl implements ArtistaCrudService {
 
@@ -31,7 +31,7 @@ public class ArtistaCrudServiceImpl implements ArtistaCrudService {
     }
 
     @Override
-    public Artista crear(NuevoArtistaDto dto) {
+    public Artista crear(CrearArtistaDto dto) {
         Objects.requireNonNull(dto, "El DTO no puede ser null");
 
         ArtistaId artistaId = artistaRepository.nextId();

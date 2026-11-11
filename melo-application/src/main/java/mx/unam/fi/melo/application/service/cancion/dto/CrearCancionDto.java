@@ -2,7 +2,7 @@ package mx.unam.fi.melo.application.service.cancion.dto;
 
 import mx.unam.fi.domain.model.GeneroMusical;
 
-public class NuevaCancionDto {
+public class CrearCancionDto {
 
     private String titulo;
     private String url;
@@ -10,7 +10,7 @@ public class NuevaCancionDto {
     private GeneroMusical genero;
     private int numeroPista;
 
-    private NuevaCancionDto(Builder builder) {
+    private CrearCancionDto(Builder builder) {
         this.titulo = builder.titulo;
         this.url = builder.url;
         this.duracion = builder.duracion;
@@ -60,8 +60,8 @@ public class NuevaCancionDto {
             return this;
         }
 
-        public NuevaCancionDto build() {
-            return new NuevaCancionDto(this);
+        public CrearCancionDto build() {
+            return new CrearCancionDto(this);
         }
     }
 }
