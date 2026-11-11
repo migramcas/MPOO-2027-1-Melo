@@ -12,6 +12,8 @@ import mx.unam.fi.domain.repository.UsuarioRepository;
 import mx.unam.fi.melo.application.service.usuario.UsuarioCrudService;
 import mx.unam.fi.melo.application.service.usuario.dto.ActualizarUsuarioDto;
 import mx.unam.fi.melo.application.service.usuario.dto.InfoCrearUsuarioDto;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioDuplicadoException;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioNoEncontradoException;
 
 public class UsuarioCrudServiceImpl implements UsuarioCrudService {
 
@@ -39,12 +41,12 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
     }
 
     @Override
-    public Usuario crear(InfoCrearUsuarioDto usuario) {
+    public Usuario crear(InfoCrearUsuarioDto usuario) throws UsuarioDuplicadoException {
        Objects.requireNonNull(usuario, "El usuario no puede ser null");
 
         Optional<Usuario> usuarioGuardado = usuarioRepository.getByEmail(usuario.getEmail());
         if(usuarioGuardado.isPresent()) {
-            throw new IllegalStateException("El usuario ya existe");
+            throw new UsuarioDuplicadoException("El usuario ya existe");
         }
 
         DatosPersonales datosPersonales = DatosPersonales.builder()
@@ -72,12 +74,12 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
     }
 
     @Override
-    public Usuario actualizar(Long id, ActualizarUsuarioDto usuario) {
+    public Usuario actualizar(Long id, ActualizarUsuarioDto usuario) throws UsuarioNoEncontradoException {
         Objects.requireNonNull(id, "El id no puede ser null");
         Objects.requireNonNull(usuario, "El usuario no puede ser null");
 
         Usuario usuarioExistente = usuarioRepository.getById(id)
-                .orElseThrow(() -> new IllegalStateException("Usuario con id " + id + " no encontrado"));
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario con id " + id + " no encontrado"));
 
         DatosPersonales datosPersonalesActuales = usuarioExistente.getDatosPersonales();
 
@@ -110,7 +112,7 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
     }
 
     @Override
-    public void eliminar(Long id, Rol rol) {
+    public void eliminar(Long id, Rol rol) throws UsuarioNoEncontradoException {
         Objects.requireNonNull(id, "El id no puede ser null");
         Usuario usuario = verificarExitenciaUsuario(id);
         verificarRolUsuario(rol, usuario);
@@ -123,9 +125,9 @@ public class UsuarioCrudServiceImpl implements UsuarioCrudService {
         }
     }
 
-    private Usuario verificarExitenciaUsuario(Long id) {
+    private Usuario verificarExitenciaUsuario(Long id) throws UsuarioNoEncontradoException {
         return obtenerUsuarioPorId(id)
-                .orElseThrow(() -> new IllegalStateException("Usuario con id " + id + " no encontrado"));
+                .orElseThrow(() -> new UsuarioNoEncontradoException("Usuario con id " + id + " no encontrado"));
     }
 
 }

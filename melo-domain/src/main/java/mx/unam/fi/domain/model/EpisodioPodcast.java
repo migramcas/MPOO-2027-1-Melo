@@ -1,5 +1,7 @@
 package mx.unam.fi.domain.model;
 
+import mx.unam.fi.domain.exception.DuracionContenidoException;
+
 public class EpisodioPodcast extends ContenidoMultimedia {
 
   private final int numeroEpisodio;
@@ -37,6 +39,10 @@ public class EpisodioPodcast extends ContenidoMultimedia {
 
     @Override
     public EpisodioPodcast build() {
+      if(this.duracionSegundos > 3000) {
+        throw new DuracionContenidoException("La duración del episodio no puede ser mayor a 3000 segundos");
+      }
+
       return new EpisodioPodcast(this);
     }
   }

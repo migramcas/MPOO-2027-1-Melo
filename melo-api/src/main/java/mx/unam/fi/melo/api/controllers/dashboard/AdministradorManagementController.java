@@ -5,6 +5,8 @@ import mx.unam.fi.domain.model.Usuario;
 import mx.unam.fi.melo.api.dto.inbound.NuevoUsuarioRequest;
 import mx.unam.fi.melo.application.service.usuario.UsuarioCrudService;
 import mx.unam.fi.melo.application.service.usuario.dto.InfoCrearUsuarioDto;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioDuplicadoException;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioNoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +44,7 @@ public class AdministradorManagementController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario create(@RequestBody NuevoUsuarioRequest request) {
+    public Usuario create(@RequestBody NuevoUsuarioRequest request) throws UsuarioDuplicadoException {
         InfoCrearUsuarioDto dto = InfoCrearUsuarioDto.builder()
                 .rol(Rol.ADMIN)
                 .nombreUsuario(request.getNombreUsuario())
@@ -58,7 +60,7 @@ public class AdministradorManagementController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws UsuarioNoEncontradoException {
         usuarioCrudService.eliminar(id, Rol.ADMIN);
     }
 }

@@ -26,6 +26,7 @@ public class CancionManagementController {
         return cancionCrudService.obtenerTodos();
     }
 
+    // endpoint => https://localhost:8080/dashboard/cancion/1000000
     @GetMapping("/{id}")
     public Cancion getById(@PathVariable Long id) {
         return cancionCrudService.obtenerPorId(id)

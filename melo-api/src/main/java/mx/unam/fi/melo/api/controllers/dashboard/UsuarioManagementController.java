@@ -5,6 +5,7 @@ import java.util.List;
 import mx.unam.fi.domain.model.Rol;
 import mx.unam.fi.melo.api.dto.inbound.ActualizarUsuarioRequest;
 import mx.unam.fi.melo.api.dto.inbound.NuevoUsuarioRequest;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioNoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class UsuarioManagementController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws UsuarioNoEncontradoException {
         usuarioCrudService.eliminar(id, Rol.USUARIO);
     }
 }

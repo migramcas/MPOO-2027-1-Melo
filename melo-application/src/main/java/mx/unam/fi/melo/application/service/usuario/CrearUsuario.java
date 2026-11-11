@@ -2,9 +2,10 @@ package mx.unam.fi.melo.application.service.usuario;
 
 import mx.unam.fi.domain.model.Usuario;
 import mx.unam.fi.melo.application.service.usuario.dto.InfoCrearUsuarioDto;
+import mx.unam.fi.melo.application.service.usuario.exception.UsuarioDuplicadoException;
 
 @FunctionalInterface
 public interface CrearUsuario {
 
-    Usuario crear(InfoCrearUsuarioDto usuario);
+    Usuario crear(InfoCrearUsuarioDto usuario) throws UsuarioDuplicadoException;
 }
