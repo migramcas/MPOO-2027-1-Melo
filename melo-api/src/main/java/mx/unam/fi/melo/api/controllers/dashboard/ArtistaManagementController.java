@@ -2,6 +2,7 @@ package mx.unam.fi.melo.api.controllers.dashboard;
 
 import mx.unam.fi.domain.model.Artista;
 import mx.unam.fi.domain.model.ArtistaId;
+import mx.unam.fi.domain.model.DatosPersonales;
 import mx.unam.fi.melo.api.dto.inbound.ActualizarArtistaRequest;
 import mx.unam.fi.melo.api.dto.inbound.NuevoArtistaRequest;
 import mx.unam.fi.melo.application.service.artista.ArtistaCrudService;
@@ -36,10 +37,18 @@ public class ArtistaManagementController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Artista create(@RequestBody NuevoArtistaRequest request) {
+
+        DatosPersonales datosPersonales = DatosPersonales.builder()
+                .nombre(request.getNombre())
+                .apellidoPaterno(request.getApellidoPaterno())
+                .apellidoMaterno(request.getApellidoMaterno())
+                .fechaNacimiento(request.getFechaNacimiento())
+                .build();
+
         CrearArtistaDto dto = CrearArtistaDto.builder()
                 .nombreArtistico(request.getNombreArtistico())
                 .biografia(request.getBiografia())
-                .datosPersonales(request.getDatosPersonales())
+                .datosPersonales(datosPersonales)
                 .generos(request.getGeneros())
                 .build();
         return artistaCrudService.crear(dto);

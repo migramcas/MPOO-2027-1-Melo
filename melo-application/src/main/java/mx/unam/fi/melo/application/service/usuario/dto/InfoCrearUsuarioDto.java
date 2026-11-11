@@ -78,6 +78,7 @@ public class InfoCrearUsuarioDto {
 
         public Builder creadoPor(Long creadoPor) {
             this.creadoPor = creadoPor;
+            return this;
         }
 
         public InfoCrearUsuarioDto build() {
